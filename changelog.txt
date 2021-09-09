@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2
+
+	- Added changelog.txt.
+	- Added `GPPA_GS_VERSION` to better support internal buildl tooling.
+	- Removed `./` from include/require paths.
+
 ## 0.1.1
 
     - Removed `./` from include/require paths.
