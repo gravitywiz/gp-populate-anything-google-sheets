@@ -1,0 +1,9 @@
+# Changelog
+
+## 0.1.1
+
+    - Removed `./` from include/require paths.
+
+## 0.1
+
+	- Hello, World!
