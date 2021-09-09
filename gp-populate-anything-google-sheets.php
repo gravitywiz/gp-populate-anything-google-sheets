@@ -8,6 +8,8 @@
  * Author URI:   https://gravitywiz.com
  */
 
+define( 'GPPA_GS_VERSION', '0.1.1' );
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die();
 }

@@ -9,7 +9,7 @@ class GPPA_Google_Sheets extends GFAddOn {
 	/**
 	 * @var string Version number of the Add-On
 	 */
-	protected $_version = '0.1.1';
+	protected $_version = GPPA_GS_VERSION;
 	/**
 	 * @var string Gravity Forms minimum version requirement
 	 */
