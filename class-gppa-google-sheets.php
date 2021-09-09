@@ -56,8 +56,8 @@ class GPPA_Google_Sheets extends GFAddOn {
 			return;
 		}
 
-		require_once plugin_dir_path( __FILE__ ) . './vendor/autoload.php';
-		require_once plugin_dir_path( __FILE__ ) . './class-object-type-google-sheet.php';
+		require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+		require_once plugin_dir_path( __FILE__ ) . 'class-object-type-google-sheet.php';
 
 		gp_populate_anything()->register_object_type( 'google_sheet', 'GPPA_Object_Type_Google_Sheet' );
 	}
@@ -100,7 +100,7 @@ class GPPA_Google_Sheets extends GFAddOn {
 		// Force field type.
 		$field['type'] = 'json';
 
-		require_once plugin_dir_path( __FILE__ ) . './class-gf-setting-json.php';
+		require_once plugin_dir_path( __FILE__ ) . 'class-gf-setting-json.php';
 
 		// Initialize a new field.
 		$field = \Gravity_Forms\Gravity_Forms\Settings\Fields::create(

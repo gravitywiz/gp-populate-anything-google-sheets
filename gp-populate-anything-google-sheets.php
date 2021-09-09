@@ -21,7 +21,7 @@ class GPPA_Google_Sheets_Bootstrap {
 			return;
 		}
 
-		require_once plugin_dir_path( __FILE__ ) . './class-gppa-google-sheets.php';
+		require_once plugin_dir_path( __FILE__ ) . 'class-gppa-google-sheets.php';
 
 		GFAddOn::register( 'GPPA_Google_Sheets' );
 	}
