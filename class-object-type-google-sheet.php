@@ -21,7 +21,7 @@ class GPPA_Object_Type_Google_Sheet extends GPPA_Object_Type {
 		$addon    = GPPA_Google_Sheets::get_instance();
 		$json_key = $addon->get_plugin_setting( 'gcp_service_account_json' );
 
-		if ( ! $json_key ) {
+		if ( ! $this->validate_json_key( $json_key ) ) {
 			return;
 		}
 
@@ -39,6 +39,24 @@ class GPPA_Object_Type_Google_Sheet extends GPPA_Object_Type {
 		$this->service_drive  = new Google_Service_Drive( $this->google_client );
 
 		add_action( 'gppa_pre_object_type_query_google_sheet', array( $this, 'add_filter_hooks' ) );
+	}
+
+	public function validate_json_key( $json_key ) {
+		$key = GFCommon::maybe_decode_json( $json_key );
+
+		if ( ! $key ) {
+			return false;
+		}
+
+		if ( rgar( $key, 'type' ) !== 'service_account' ) {
+			return false;
+		}
+
+		if ( ! rgar( $key, 'private_key' ) ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	public function add_filter_hooks() {
@@ -87,6 +105,10 @@ class GPPA_Object_Type_Google_Sheet extends GPPA_Object_Type {
 	 */
 	public function get_sheet_raw_values( $spreadsheet_id, $sheet = null ) {
 
+		if ( ! $this->service_sheets ) {
+			return array();
+		}
+
 		if ( ! empty( $this->sheet_values_runtime_cache[ $spreadsheet_id ] ) ) {
 			return $this->sheet_values_runtime_cache[ $spreadsheet_id ];
 		}
@@ -130,6 +152,10 @@ class GPPA_Object_Type_Google_Sheet extends GPPA_Object_Type {
 	 */
 	public function get_sheet_columns( $spreadsheet_id, $sheet = null ) {
 		$values = $this->get_sheet_raw_values( $spreadsheet_id, $sheet );
+
+		if ( empty( $values ) ) {
+			return array();
+		}
 
 		return $values[0];
 	}
