@@ -4,6 +4,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die();
 }
 
+use \GP_Populate_Anything_Google_Sheets\Dependencies\Google_Client as Google_Client;
+use \GP_Populate_Anything_Google_Sheets\Dependencies\Google\Service\Sheets as Google_Service_Sheets;
+use \GP_Populate_Anything_Google_Sheets\Dependencies\Google\Service\Drive as Google_Service_Drive;
+
 class GPPA_Object_Type_Google_Sheet extends GPPA_Object_Type {
 	const ROW_NUMBER_ID = 'Row Number';
 

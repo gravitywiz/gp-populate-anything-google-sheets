@@ -49,6 +49,25 @@ class GPPA_Google_Sheets extends GFAddOn {
 		return self::$_instance;
 	}
 
+	/**
+	 * @credit https://github.com/google/site-kit-wp
+	 */
+	public function setup_autoload() {
+		$class_map = array_merge(
+			include plugin_dir_path( __FILE__ ) . 'third-party/vendor/composer/autoload_classmap.php'
+		);
+
+		spl_autoload_register(
+			function ( $class ) use ( $class_map ) {
+				if ( isset( $class_map[ $class ] ) && 'GP_Populate_Anything_Google_Sheets\\Dependencies' === substr( $class, 0, 47 ) ) {
+					require_once $class_map[ $class ];
+				}
+			},
+			true,
+			true
+		);
+	}
+
 	public function init() {
 		parent::init();
 
@@ -56,7 +75,8 @@ class GPPA_Google_Sheets extends GFAddOn {
 			return;
 		}
 
-		require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+		$this->setup_autoload();
+
 		require_once plugin_dir_path( __FILE__ ) . 'class-object-type-google-sheet.php';
 
 		gp_populate_anything()->register_object_type( 'google_sheet', 'GPPA_Object_Type_Google_Sheet' );
