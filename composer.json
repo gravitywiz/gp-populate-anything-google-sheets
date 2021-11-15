@@ -13,8 +13,9 @@
 		],
 		"credit-for-these-php-scoper-scripts": "https://github.com/google/site-kit-wp",
 		"prefix-dependencies": [
+			"@composer --working-dir=php-scoper install",
 			"rm -rf third-party",
-			"./vendor/bin/php-scoper add --output-dir=./third-party --force --quiet",
+			"./php-scoper/vendor/bin/php-scoper add --output-dir=./third-party --force --quiet",
 			"@autoload-third-party",
 			"@composer dump-autoload --no-dev",
 			"cp vendor/composer/autoload_files.php third-party/vendor/",
@@ -36,8 +37,5 @@
             "Drive",
             "Sheets"
         ]
-    },
-    "require-dev": {
-        "humbug/php-scoper": "^0.15.0"
     }
 }
