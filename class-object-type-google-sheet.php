@@ -245,15 +245,18 @@ class GPPA_Object_Type_Google_Sheet extends GPPA_Object_Type {
 
 	public function perform_search( $var, $search ) {
 
+		$var_value    = strtolower( $var[ $search['property'] ] );
+		$search_value = strtolower( $search['value'] );
+
 		switch ( $search['operator'] ) {
 			case 'is':
-				return ( $var[ $search['property'] ] == $search['value'] );
+				return ( $var_value == $search_value );
 
 			case 'isnot':
-				return ( $var[ $search['property'] ] != $search['value'] );
+				return ( $var_value != $search_value );
 
 			case 'contains':
-				return ( stripos( $var[ $search['property'] ], $search['value'] ) !== false );
+				return ( stripos( $var_value, $search_value ) !== false );
 
 			default:
 				throw new Error( 'Invalid operator provided.' );
