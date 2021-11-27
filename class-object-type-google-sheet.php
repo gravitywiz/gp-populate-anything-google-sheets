@@ -49,14 +49,17 @@ class GPPA_Object_Type_Google_Sheet extends GPPA_Object_Type {
 		$key = GFCommon::maybe_decode_json( $json_key );
 
 		if ( ! $key ) {
+			gppa_google_sheets()->log_debug( __METHOD__ . '(): No key provided.' );
 			return false;
 		}
 
 		if ( rgar( $key, 'type' ) !== 'service_account' ) {
+			gppa_google_sheets()->log_debug( sprintf( __METHOD__ . '(): Key is not of the correct type. Type required: "service_account" Type provided: "%s".', rgar( $key, 'type' ) ) );
 			return false;
 		}
 
 		if ( ! rgar( $key, 'private_key' ) ) {
+			gppa_google_sheets()->log_debug( __METHOD__ . '(): Key is private. Key must be public.' );
 			return false;
 		}
 

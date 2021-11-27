@@ -150,3 +150,7 @@ class GPPA_Google_Sheets extends GFAddOn {
 	}
 
 }
+
+function gppa_google_sheets() {
+	return GPPA_Google_Sheets::get_instance();
+}
