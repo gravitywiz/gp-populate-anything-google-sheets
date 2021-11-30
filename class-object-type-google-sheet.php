@@ -59,7 +59,7 @@ class GPPA_Object_Type_Google_Sheet extends GPPA_Object_Type {
 		}
 
 		if ( ! rgar( $key, 'private_key' ) ) {
-			gppa_google_sheets()->log_debug( __METHOD__ . '(): Key is private. Key must be public.' );
+			gppa_google_sheets()->log_debug( __METHOD__ . '(): A private key was not provided.' );
 			return false;
 		}
 
