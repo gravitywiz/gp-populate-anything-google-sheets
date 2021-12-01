@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.7
+
+	- Added logging for Google key validation.
+
 ## 0.1.6
 
 	- Updated filter behavior to be case-insensitive to match behavior of core Populate Anything Object Types.
