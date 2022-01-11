@@ -46,7 +46,7 @@ class GPPA_Object_Type_Google_Sheet extends GPPA_Object_Type {
 	}
 
 	public function validate_json_key( $json_key ) {
-		$key = GFCommon::maybe_decode_json( $json_key );
+		$key = GPPA_Google_Sheets::maybe_decode_json( $json_key );
 
 		if ( ! $key ) {
 			gppa_google_sheets()->log_debug( __METHOD__ . '(): No key provided.' );
