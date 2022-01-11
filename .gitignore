@@ -1,2 +1,18 @@
+js/built
+.idea
+.DS_Store
 vendor
 third-party
+node_modules
+styles/*.min.css
+styles/*.map
+
+# Private Files (Personal or sensitive info to not version control)
+.env
+.envrc
+*.log
+_output
+results.xml
+
+# Linting
+eslint_report.json
