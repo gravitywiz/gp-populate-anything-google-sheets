@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.8
+
+	- Fixed fatal error if using versions of Gravity Forms older than 2.5.
+
 ## 0.1.7
 
 	- Added logging for Google key validation.
