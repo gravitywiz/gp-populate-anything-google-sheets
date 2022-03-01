@@ -216,6 +216,8 @@ class GPPA_Object_Type_Google_Sheet extends GPPA_Object_Type {
 					'is',
 					'isnot',
 					'contains',
+					'is_in',
+					'is_not_in',
 				),
 			);
 		}
@@ -248,18 +250,30 @@ class GPPA_Object_Type_Google_Sheet extends GPPA_Object_Type {
 
 	public function perform_search( $var, $search ) {
 
-		$var_value    = strtolower( $var[ $search['property'] ] );
-		$search_value = strtolower( $search['value'] );
+		$var_value = is_array( $var[ $search['property'] ] ) ? array_map( 'strtolower', $var[ $search['property'] ] )
+			: strtolower( $var[ $search['property'] ] );
+
+		$search_value = is_array( $search['value'] ) ? array_map( 'strtolower', $search['value'] ) : strtolower( $search['value'] );
 
 		switch ( $search['operator'] ) {
 			case 'is':
+				// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
 				return ( $var_value == $search_value );
 
 			case 'isnot':
+				// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
 				return ( $var_value != $search_value );
 
+			case 'is_in':
+				// phpcs:ignore WordPress.PHP.StrictInArray.FoundNonStrictFalse
+				return in_array( $var_value, $search_value, false );
+
+			case 'is_not_in':
+				// phpcs:ignore WordPress.PHP.StrictInArray.FoundNonStrictFalse
+				return ! in_array( $var_value, $search_value, false );
+
 			case 'contains':
-				return ( stripos( $var_value, $search_value ) !== false );
+				return ( strpos( $var_value, $search_value ) !== false );
 
 			default:
 				throw new Error( 'Invalid operator provided.' );
