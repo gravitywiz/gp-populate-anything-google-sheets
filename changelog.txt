@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0
+
+	- Added minimum requirement of PHP version 7.3 due to upstream dependencies.
+	- Updated dependencies.
+	- Fixed issue where ordering results did not work.
+
 ## 0.1.9
 
 	- Added support for "is in" and "is not in" operators. These are useful if checking for the presence of a value in a checkbox field's selected choices.

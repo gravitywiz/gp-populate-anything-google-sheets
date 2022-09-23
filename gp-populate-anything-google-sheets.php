@@ -4,11 +4,11 @@
  * Plugin URI:   https://gravitywiz.com/documentation/gravity-forms-populate-anything
  * Description:  Add Object Type for fetching data from Google Sheets.
  * Author:       Gravity Wiz
- * Version: 0.1.9
+ * Version: 0.2.0
  * Author URI:   https://gravitywiz.com
  */
 
-define( 'GPPA_GS_VERSION', '0.1.9' );
+define( 'GPPA_GS_VERSION', '0.2.0' );
 
 if ( ! defined( 'ABSPATH' ) ) {
 	die();
