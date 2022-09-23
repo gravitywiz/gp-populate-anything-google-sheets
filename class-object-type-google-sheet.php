@@ -322,6 +322,7 @@ class GPPA_Object_Type_Google_Sheet extends GPPA_Object_Type {
 		 * @var $primary_property_value
 		 * @var $property
 		 * @var $property_id
+		 * @var $ordering
 		 */
 		extract( $args );
 
@@ -332,6 +333,17 @@ class GPPA_Object_Type_Google_Sheet extends GPPA_Object_Type {
 			$results = array_filter( $results, function ( $var ) use ( $search_params ) {
 				return $this->search( $var, $search_params );
 			} );
+		}
+
+		$orderby = rgar( $ordering, 'orderby' );
+		$order   = strtolower( rgar( $ordering, 'order', 'ASC' ) );
+
+		if ( ! empty( $orderby ) && count( $results ) && array_key_exists( $orderby, $results[0] ) ) {
+			if ( $order === 'rand' ) {
+				shuffle( $results );
+			} else {
+				array_multisort( array_column( $results, $orderby ), $order === 'desc' ? SORT_DESC : SORT_ASC, $results );
+			}
 		}
 
 		$query_limit   = gp_populate_anything()->get_query_limit( $this, $args['field'] );
