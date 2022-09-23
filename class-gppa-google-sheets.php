@@ -146,6 +146,9 @@ class GPPA_Google_Sheets extends GFAddOn {
 					'Gravity Forms Populate Anything',
 				),
 			),
+			'php' => array(
+				'version' => '7.3',
+			),
 		);
 	}
 
