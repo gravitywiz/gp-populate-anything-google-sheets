@@ -176,13 +176,27 @@ class GPPA_Object_Type_Google_Sheet extends GPPA_Object_Type {
 	 * @return array
 	 */
 	public function get_sheet_rows( $spreadsheet_id, $sheet = null ) {
+		$transient_key = 'gppa_google_sheets_rows_' . $spreadsheet_id;
+
+		$cached_rows = get_transient( $transient_key );
+
+		if ( ! empty( $cached_rows ) ) {
+			return $cached_rows;
+		}
+
 		$values       = array_slice( $this->get_sheet_raw_values( $spreadsheet_id, $sheet ), 1 );
 		$columns      = $this->get_sheet_columns( $spreadsheet_id, $sheet );
 		$column_count = count( $columns );
 
-		return array_map( function ( $row ) use ( $columns, $column_count ) {
+		$sheet_rows = array_map( function ( $row ) use ( $columns, $column_count ) {
 			return array_combine( $columns, array_slice( array_pad( $row, $column_count, '' ), 0, $column_count ) );
 		}, $values );
+
+		$expiration_time = apply_filters( 'gpaa_google_sheets_cached_rows_expiration', 60 );
+
+		set_transient( $transient_key, $sheet_rows, $expiration_time );
+
+		return $sheet_rows;
 	}
 
 	/**
