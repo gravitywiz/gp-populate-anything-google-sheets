@@ -6,6 +6,13 @@
  * Author:       Gravity Wiz
  * Version: 0.2.0
  * Author URI:   https://gravitywiz.com
+ * License: GPL2
+ *
+ * @package gp-populate-anything-google-sheets
+ * @copyright Copyright (c) 2021-2022, Gravity Wiz, LLC
+ * @author Gravity Wiz <support@gravitywiz.com>
+ * @license GPLv2
+ * @link https://github.com/gravitywiz/gp-populate-anything-google-sheets
  */
 
 define( 'GPPA_GS_VERSION', '0.2.0' );

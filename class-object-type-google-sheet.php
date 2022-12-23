@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * @package gp-populate-anything-google-sheets
+ * @copyright Copyright (c) 2021-2022, Gravity Wiz, LLC
+ * @author Gravity Wiz <support@gravitywiz.com>
+ * @license GPLv2
+ * @link https://github.com/gravitywiz/gp-populate-anything-google-sheets
+ */
 if ( ! defined( 'ABSPATH' ) ) {
 	die();
 }
