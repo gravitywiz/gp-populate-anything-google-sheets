@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:  GP Populate Anything - Google Sheets Object Type
- * Plugin URI:   https://gravitywiz.com/documentation/gravity-forms-populate-anything
+ * Plugin URI:   https://gravitywiz.com/populate-gravity-forms-with-google-sheets/
  * Description:  Add Object Type for fetching data from Google Sheets.
  * Author:       Gravity Wiz
  * Version: 0.2.0
