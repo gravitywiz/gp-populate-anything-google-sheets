@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.1
+
+	- Added try/catch in `get_sheet_raw_values()` to prevent fatal errors if an error occurs when communicating with Google.
+	- Added copyright headers and license.
+	- Updated `Plugin URI`.
+	- Added `readme.md`.
+	- Added caching mechanism when querying for Google Sheet rows to help avoid rate limit issues.
+
 ## 0.2.0
 
 	- Added minimum requirement of PHP version 7.3 due to upstream dependencies.

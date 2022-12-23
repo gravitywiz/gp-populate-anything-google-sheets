@@ -4,7 +4,7 @@
  * Plugin URI:   https://gravitywiz.com/populate-gravity-forms-with-google-sheets/
  * Description:  Add Object Type for fetching data from Google Sheets.
  * Author:       Gravity Wiz
- * Version: 0.2.0
+ * Version: 0.2.1
  * Author URI:   https://gravitywiz.com
  * License: GPL2
  *
@@ -15,7 +15,7 @@
  * @link https://github.com/gravitywiz/gp-populate-anything-google-sheets
  */
 
-define( 'GPPA_GS_VERSION', '0.2.0' );
+define( 'GPPA_GS_VERSION', '0.2.1' );
 
 if ( ! defined( 'ABSPATH' ) ) {
 	die();
