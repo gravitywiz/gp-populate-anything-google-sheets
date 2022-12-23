@@ -126,33 +126,38 @@ class GPPA_Object_Type_Google_Sheet extends GPPA_Object_Type {
 			return $this->sheet_values_runtime_cache[ $spreadsheet_id ];
 		}
 
-		$spreadsheet = $this->service_sheets->spreadsheets->get( $spreadsheet_id );
-		$sheets      = $spreadsheet->getSheets();
+		try {
+			$spreadsheet = $this->service_sheets->spreadsheets->get( $spreadsheet_id );
+			$sheets      = $spreadsheet->getSheets();
 
-		// Limitation: use first available sheet. Ideally we would have the ability to drill down in primary properties
-		// @todo maybe we list all spreadsheets and their sheets as primary properties?
-		if ( ! $sheet ) {
-			$sheet = apply_filters( 'gppa_google_sheets_selected_sheet', $sheets[0], $sheets, $spreadsheet_id );
-		}
-
-		$response = $this->service_sheets->spreadsheets_values->get( $spreadsheet_id, $sheet->getProperties()->title );
-		$values   = $response->getValues();
-
-		foreach ( $values as $value_index => $value ) {
-			if ( $value_index === 0 ) {
-				array_unshift( $values[ $value_index ], self::ROW_NUMBER_ID );
-
-				continue;
+			// Limitation: use first available sheet. Ideally we would have the ability to drill down in primary properties
+			// @todo maybe we list all spreadsheets and their sheets as primary properties?
+			if ( ! $sheet ) {
+				$sheet = apply_filters( 'gppa_google_sheets_selected_sheet', $sheets[0], $sheets, $spreadsheet_id );
 			}
 
-			// Add row number to values to serve as the ID of the object.
-			array_unshift( $values[ $value_index ], $value_index );
+			$response = $this->service_sheets->spreadsheets_values->get( $spreadsheet_id, $sheet->getProperties()->title );
+			$values   = $response->getValues();
+
+			foreach ( $values as $value_index => $value ) {
+				if ( $value_index === 0 ) {
+					array_unshift( $values[ $value_index ], self::ROW_NUMBER_ID );
+
+					continue;
+				}
+
+				// Add row number to values to serve as the ID of the object.
+				array_unshift( $values[ $value_index ], $value_index );
+			}
+
+			$this->sheet_values_runtime_cache[ $spreadsheet_id ] = $values;
+
+			return $values;
+		} catch ( Exception $e ) {
+			error_log( 'Unable to fetch from Google Sheets: ' . $e->getMessage() );
+
+			return array();
 		}
-
-		$this->sheet_values_runtime_cache[ $spreadsheet_id ] = $values;
-
-		return $values;
-
 	}
 
 	/**
