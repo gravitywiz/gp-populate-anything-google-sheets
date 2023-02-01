@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2
+
+	- Fixed PHP error that could occur if using both filtering and ordering.
+
 ## 0.2.1
 
 	- Added try/catch in `get_sheet_raw_values()` to prevent fatal errors if an error occurs when communicating with Google.
