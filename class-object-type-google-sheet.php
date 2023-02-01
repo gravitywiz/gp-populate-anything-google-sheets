@@ -355,9 +355,9 @@ class GPPA_Object_Type_Google_Sheet extends GPPA_Object_Type {
 		$search_params = $this->process_filter_groups( $args );
 
 		if ( ! empty( $search_params ) ) {
-			$results = array_filter( $results, function ( $var ) use ( $search_params ) {
+			$results = array_values( array_filter( $results, function ( $var ) use ( $search_params ) {
 				return $this->search( $var, $search_params );
-			} );
+			} ) );
 		}
 
 		$orderby = rgar( $ordering, 'orderby' );
