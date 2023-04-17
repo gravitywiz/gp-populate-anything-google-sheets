@@ -320,22 +320,18 @@ class GPPA_Object_Type_Google_Sheet extends GPPA_Object_Type {
 	 */
 	public function search( $var, $search_params ) {
 		foreach ( $search_params as $search_group ) {
-			$matches_group = true;
+			if ( is_array( $search_group ) ) {
+				foreach ( $search_group as $search ) {
+					$matches_group = $this->perform_search( $var, $search );
 
-			foreach ( $search_group as $search ) {
-				$matches_group = $this->perform_search( $var, $search );
-
-				if ( ! $matches_group ) {
-					break;
+					if ( ! $matches_group ) {
+						return false;
+					}
 				}
-			}
-
-			if ( $matches_group ) {
-				return true;
 			}
 		}
 
-		return false;
+		return true;
 	}
 
 	public function query( $args ) {
