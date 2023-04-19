@@ -1,5 +1,10 @@
 {
 	"require-dev": {
 		"humbug/php-scoper": "^0.15.0"
+	},
+	"config": {
+		"platform": {
+			"php": "7.4"
+		}
 	}
 }
