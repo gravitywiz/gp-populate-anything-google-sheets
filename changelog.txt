@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.3
+
+	- Fixed issue where filtering rows did not work as expected.
+
 ## 0.2.2
 
 	- Fixed PHP error that could occur if using both filtering and ordering.
