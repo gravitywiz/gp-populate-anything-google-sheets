@@ -44,6 +44,10 @@ class GPPA_Google_Sheets extends GFAddOn {
 	 * @var string Short version of the plugin title to be used on menus and other places where a less verbose string is useful. Example: 'MailChimp'
 	 */
 	protected $_short_title = 'GPPA + Sheets';
+	/**
+	 * @var string The capability needed to access the Add-On settings page.
+	 */
+	protected $_capabilities_settings_page = 'gravityperks_gppa-google-sheets';
 
 	private static $_instance = null;
 
