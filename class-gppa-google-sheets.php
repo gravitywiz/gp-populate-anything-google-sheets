@@ -44,10 +44,40 @@ class GPPA_Google_Sheets extends GFAddOn {
 	 * @var string Short version of the plugin title to be used on menus and other places where a less verbose string is useful. Example: 'MailChimp'
 	 */
 	protected $_short_title = 'GPPA + Sheets';
+
 	/**
-	 * @var string The capability needed to access the Add-On settings page.
+	 * Defines the capabilities needed for the Add-On.
+	 *
+	 * @var array $_capabilities The capabilities needed for the Add-On
 	 */
-	protected $_capabilities_settings_page = 'gravityperks_gppa-google-sheets';
+	protected $_capabilities = array(
+		'gp-populate-anything-google-sheets',
+		'gp-populate-anything-google-sheets_uninstall',
+		'gp-populate-anything-google-sheets_results',
+		'gp-populate-anything-google-sheets_settings',
+		'gp-populate-anything-google-sheets_form_settings',
+	);
+
+	/**
+	 * Defines the capability needed to access the Add-On settings page.
+	 *
+	 * @var string $_capabilities_settings_page The capability needed to access the Add-On settings page.
+	 */
+	protected $_capabilities_settings_page = 'gp-populate-anything-google-sheets_settings';
+
+	/**
+	 * Defines the capability needed to access the Add-On form settings page.
+	 *
+	 * @var string $_capabilities_form_settings The capability needed to access the Add-On form settings page.
+	 */
+	protected $_capabilities_form_settings = 'gp-populate-anything-google-sheets_form_settings';
+
+	/**
+	 * Defines the capability needed to uninstall the Add-On.
+	 *
+	 * @var string $_capabilities_uninstall The capability needed to uninstall the Add-On.
+	 */
+	protected $_capabilities_uninstall = 'gp-populate-anything-google-sheets_uninstall';
 
 	private static $_instance = null;
 
